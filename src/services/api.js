@@ -13,7 +13,7 @@ export async function apiCall(path, options = {}) {
     ...(options.headers || {}),
   }
 
-  const res = await fetch(`BASE_URL${path}`, { ...options, headers })
+  const res = await fetch(`${BASE_URL}${path}`, { ...options, headers })
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}))
