@@ -29,7 +29,7 @@ function AppInner() {
       case 'convites':      return <ConvitesPage/>
       case 'perfil':        return <PerfilPage />
       case 'chat':          return <ChatPage />
-      default:              return <EventosPage />
+      default:              return <HomePage />
     }
   }
 
