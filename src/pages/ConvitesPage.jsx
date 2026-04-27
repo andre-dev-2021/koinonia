@@ -16,21 +16,21 @@ export default function ConvitesPage() {
     try {
       const r = await getCollection('convites')
       const v = await getCollection('usuarios')
+      const u = v.find(e => e.email === user.nome)
       const docs = r?.documents || r?.docs || (Array.isArray(r) ? r : Object.values(r || {}))
       const all = Array.isArray(docs) ? docs : []
-      let meus = all.filter((c) => 
-        c.nome_instituicao === user?.nome
-    )
-      meus = meus.map((e) => {
-        const f = v.find(o => o.id === e.uid_voluntario)
 
-        return {
-          ...e,
-          nome: f ? f.nome : ''
-        }
+      const meus = all.filter((c) => 
+        c.nome_instituicao === u.nome
+      )
+
+      const res = meus.map(c => {
+        const f = v.find(e => e.id == c.uid_voluntario)
+
+        return {...c, nome_voluntario: f.nome}
       })
-
-      setConvites(meus)
+    
+      setConvites(res)
     } catch {
       setConvites([])
     }

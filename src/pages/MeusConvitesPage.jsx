@@ -17,6 +17,7 @@ export default function MeusConvitesPage() {
       const r = await getCollection('convites')
       const docs = r?.documents || r?.docs || (Array.isArray(r) ? r : Object.values(r || {}))
       const all = Array.isArray(docs) ? docs : []
+      console.log(docs)
       const meus = all.filter((c) => 
         c.uid_voluntario === user?.id || 
         c.email_voluntario === user?.email
